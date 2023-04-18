@@ -4,7 +4,7 @@ The excellent performance of current methods for learning with label noise is ba
 
 # Pipeline
 
-![framework](2-4.pdf)
+![framework](Figure.png)
 
 # Installation
 ```
@@ -12,9 +12,10 @@ pip install -r requirements.txt
 ```
 
 # Datasets
-Currently three datasets are supported: CIFAR10, CIFAR100 and Clothing1M
-Synthetic datasets are mainly derived from CIFAR10 and CIFAR100. 
-To further verify the feasibility and effectiveness of our method in practical scenarios, we conduct experiments on a real-world dataset (\ie, Clothing1M)
+We conduct noise robustness experiments on two synthetically corrupted datasets (i.e., CIFAR100N and CIFAR80N) and three real-world datasets (i.e., Web-Aircraft, Web-Car and Web-Bird.
+Specifically, we create the closed-set noisy dataset CIFAR100N and the open-set noisy dataset CIFAR80N based on CIFAR100.
+To make the open-set noisy dataset CIFAR80N, we regard the last 20 categories in CIFAR100 as out-of-distribution. 
+We adopt two classic noise structures: symmetric and asymmetric, with a noise ratio $n \in (0,1)$.
 
 You can download the CIFAR10 and CIFAR100 on [this](https://www.cs.toronto.edu/~kriz/cifar.html).
 
