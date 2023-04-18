@@ -39,20 +39,16 @@ Here is an example shell script to run SACB on Web-aircraft :
 CUDA_VISIBLE_DEVICES=0 python main_web.py --warmup-epoch 5 --epoch 60 --batch-size 32 --lr 0.00008 --warmup-lr 0.00005  --lr-decay cosine:5,1e-6,55 --weight-decay 5e-4 --seed 2023 --opt adam --dataset web-aircraft --gpu 0 --momentum_scs 0.95 --momentum_scr 0.99 --alpha 1 --aph 0.99
 ```
 
-# Results on Cifar10 and Cifar100
+# Results on Cifar100N and Cifar80N:
 
-| Datasets               |  Cifar10               |   Cifar100                | 
-|:-----------------------|:-----------------------|:--------------------------|
-|  IF                    | [1,10,20,50,100,200]   |    [1,10,20]              |
-|  NR                    |  [0.0,0.2,0.4]         |     [0.0,0.2,0.4,0.6]     |
-|  CE                    |  74.49                 | 46.76                     |
-|  Class-Balanced        |63.49                   |     42.81                 |
-|  Focal                 |71.59                   |         43.85             |
-|  LDAM-DRW              |  73.46                 |         45.47             |
-|Co-teaching             |  60.63                 |         36.55             |
-|O2U                     |  65.01                 |         40.21             |
-|MW-Net                  |  74.13                 |         49.28             |
-|HAR                     | 73.50                  |          42.88            |
-|CurveNet                |  75.70                 | 50.49                     |
-|Ours                    |78.47                   |     52.94                 |
+![framework](Table1.png)
 
+
+# Results on Web-aircraft, Web-bird, and Web-car:
+
+![framework](Table2.png)
+
+
+# Effects of different compoments in test accuracy (%) onCIFAR100N (noise rate and noise type are 0.5 and symmetric,respectively)
+
+![framework](Table3.png)
