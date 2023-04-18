@@ -19,15 +19,23 @@ We adopt two classic noise structures: symmetric and asymmetric, with a noise ra
 
 You can download the CIFAR10 and CIFAR100 on [this](https://www.cs.toronto.edu/~kriz/cifar.html).
 
-You can download the Clothing1M from [here](https://github.com/lightas/Occluded-DukeMTMC-Dataset).
+You can download the Clothing1M from [here](https://github.com/NUST-Machine-Intelligence-Laboratory/weblyFG-dataset).
 
 # Training
 
-Here is an example shell script to run CBS on CIFAR-10 :
+An example shell script to run SACB on CIFAR-100N :
 
-```python
- python main.py --warmup-epoch 40 --epoch 250 --rho-range 0.6:0.6:100 --batch-size 128 --lr 0.05 --warmup-lr 0.01 --start-expand 200 --noise-type unif --closeset-ratio 0.4 --lr-decay cosine:40,5e-5,240  --opt sgd --dataset cifar10 --imbalance True --imb-factor 0.05 --alpha 0.6 --aph 0.35
+```CUDA_VISIBLE_DEVICES=0 python main.py --warmup-epoch 20 --epoch 100 --batch-size 128 --lr 0.01 --warmup-lr 0.05  --noise-type symmetric --closeset-ratio 0.2 --lr-decay cosine:20,5e-4,100  --opt sgd --dataset cifar100nc  --momentum_scs 0.9 --momentum_scr 0.9 --alpha 1.0 --aph 0.99 
 ```
+An example shell script to run SACB on CIFAR-80N :
+
+```CUDA_VISIBLE_DEVICES=0 python main.py --warmup-epoch 20 --epoch 150 --batch-size 128 --lr 0.05 --warmup-lr 0.05  --noise-type symmetric --closeset-ratio 0.2 --lr-decay cosine:20,5e-4,140  --opt sgd --dataset cifar80no  --momentum_scs 0.999 --momentum_scr 0.85 --alpha 0.5 --aph 0.99  
+```
+Here is an example shell script to run SACB on Web-aircraft :
+
+```CUDA_VISIBLE_DEVICES=0 python main_web.py --warmup-epoch 5 --epoch 60 --batch-size 32 --lr 0.00008 --warmup-lr 0.00005  --lr-decay cosine:5,1e-6,55 --weight-decay 5e-4 --seed 2023 --opt adam --dataset web-aircraft --gpu 0 --momentum_scs 0.95 --momentum_scr 0.99 --alpha 1 --aph 0.99
+```
+
 # Results on Cifar10 and Cifar100
 
 | Datasets               |  Cifar10               |   Cifar100                | 
