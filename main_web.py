@@ -23,7 +23,11 @@ from utils.SCR import SCR
 
 import os
 os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+import warnings
+warnings.filterwarnings('ignore')
 
 def conf_penalty(outputs):
     outputs = outputs.clamp(min=1e-12)
@@ -40,7 +44,7 @@ def warmup(net, scs, scr, net_ema, ema, optimizer, trainloader, dev, train_loss_
         y = sample['label'].to(device)
         outputs = net(x)
         logits = outputs['logits'] if type(outputs) is dict else outputs
-        loss_ce = F.cross_entropy(logits, y)
+        loss_ce = F.cross_entropy(logits, y, label_smoothing=0.6)
         penalty = conf_penalty(logits)
         loss = loss_ce + penalty
 
@@ -97,7 +101,6 @@ def robust_train(net, scs, scr, n_samples, net_ema, ema, optimizer, trainloader,
         x, x_s = sample['data']
         x, x_s = x.to(device), x_s.to(device)
         y = sample['label'].to(device)
-        y_true = sample['label_true'].to(device)
         outputs = net(x)
         outputs_s = net(x_s)
         pesudo = psedu_label[indices].long()
@@ -118,16 +121,16 @@ def robust_train(net, scs, scr, n_samples, net_ema, ema, optimizer, trainloader,
             l = max(l, 1 - l)
             idx2 = torch.randperm(len(ind_in_clean))
             loss_clean = torch.mean(
-                F.cross_entropy(logits[ind_in_clean], y[ind_in_clean], reduction="none") * l + (
+                F.cross_entropy(logits[ind_in_clean], y[ind_in_clean], reduction="none",label_smoothing=0.6) * l + (
                             1 - l) * F.cross_entropy(
-                    logits[ind_in_clean][idx2], y[ind_in_clean][idx2], reduction="none"))
+                    logits[ind_in_clean][idx2], y[ind_in_clean][idx2], reduction="none",label_smoothing=0.6))
         else:
-            loss_clean = F.cross_entropy(logits[ind_in_clean],y[ind_in_clean])
+            loss_clean = F.cross_entropy(logits[ind_in_clean],y[ind_in_clean],label_smoothing=0.6)
 
 
         loss = loss_clean
 
-        loss_SSL = F.cross_entropy(logits_s, pesudo, reduction="none") * weight[indices]
+        loss_SSL = F.cross_entropy(logits_s, pesudo, reduction="none",label_smoothing=0.6) * weight[indices]
         loss += loss_SSL.mean() * config.alpha
 
 
