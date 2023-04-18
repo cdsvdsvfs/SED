@@ -36,7 +36,7 @@ CUDA_VISIBLE_DEVICES=0 python main.py --warmup-epoch 20 --epoch 150 --batch-size
 Here is an example shell script to run SACB on Web-aircraft :
 
 ```python
-CUDA_VISIBLE_DEVICES=0 python main_web.py --warmup-epoch 5 --epoch 60 --batch-size 32 --lr 0.00008 --warmup-lr 0.00005  --lr-decay cosine:5,1e-6,55 --weight-decay 5e-4 --seed 2023 --opt adam --dataset web-aircraft --gpu 0 --momentum_scs 0.95 --momentum_scr 0.99 --alpha 1 --aph 0.99
+CUDA_VISIBLE_DEVICES=0 python main_webfg.py --warmup-epoch 5 --epoch 50 --batch-size 32 --lr 0.005 --warmup-lr 0.005  --lr-decay cosine:5,5e-4,50 --weight-decay 5e-4 --seed 123 --opt sgd --dataset web-bird --SSL True --gpu 0 --momentum-mask 0.999 --momentum-qaq 0.99 --pretrain True --alpha 1 --aph 0.95 --save-weights True
 ```
 
 # Results on Cifar100N and Cifar80N:
