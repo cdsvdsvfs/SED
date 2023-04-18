@@ -4,7 +4,7 @@ The excellent performance of current methods for learning with label noise is ba
 
 # Pipeline
 
-![framework](Figure2.png)
+![framework](2-4.pdf)
 
 # Installation
 ```
