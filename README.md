@@ -1,6 +1,12 @@
-# SACB: Tackling Label Noise in a Self-Adaptive Class-Balanced Manner
-**Abstract:** Label noise is inevitable in the real-world dataset, which makes deep neural networks overfit seriously and hurts the model performance dramatically.
-The excellent performance of current methods for learning with label noise is based on prior solid knowledge, such as noise rate, artificially preset threshold, and a well-labeled subset. However, this prior solid knowledge is difficult to estimate and obtain in real-world scenarios. Specifically, we design an innovative elf-adaptive Class-balanced sample Selection (SCS) method. Dynamically updated global thresholds and class-based local thresholds of SCS are estimated to divide the clean and noisy subsets based on given labels’ prediction probability and statistical values. Besides, we propose a Self-adaptive Class-balanced sample Re-weighting (SCR) method. A dynamic truncated normal distribution is estimated to assign different weights to different corrected samples based on their confidence to alleviate the deviation of correcting label class distribution. Finally, we employ Consistency Regularization (CR) between the sample’s strong data augmentation predictions and the sample’s weak data augmentation correction labels to mitigate the influence of a few inevitable noisy samples in the clean subset. Extensive experiment results on synthetic and real-world datasets demonstrate our proposed method's effectiveness and superiority, especially when the labeled data are extremely noisy (e.g., Symmetric-80%).
+# SED:Foster Adaptivity and Balance in Learning with Noisy Labels
+**Abstract:** Label noise is ubiquitous in real-world scenarios, posing a practical challenge to supervised models due to its effect in hurting the generalization performance of deep neural networks.
+Existing methods primarily employ the sample selection paradigm and usually rely on dataset-dependent prior knowledge (e.g., a pre-defined threshold) to cope with label noise, inevitably degrading the adaptivity. Moreover, existing methods tend to neglect the class balance in selecting samples, leading to biased model performance.
+To this end, we propose a simple yet effective approach named \textbf{SED} to deal with label noise in a \textbf{S}elf-adaptiv\textbf{E} and class-balance\textbf{D} manner. 
+Specifically, we first design a novel sample selection strategy to empower self-adaptivity and class balance when identifying clean and noisy data.
+A mean-teacher model is then employed to correct labels of noisy samples.
+Subsequently, we propose a self-adaptive and class-balanced sample re-weighting mechanism to assign different weights to detected noisy samples.
+Finally, we additionally employ consistency regularization on selected clean samples to improve model generalization performance.
+Extensive experimental results on synthetic and real-world datasets demonstrate the effectiveness and superiority of our proposed method..
 
 # Pipeline
 
