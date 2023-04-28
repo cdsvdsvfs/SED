@@ -253,7 +253,7 @@ def parse_args():
     parser.add_argument('--noise-type', type=str, default='symmetric')
     parser.add_argument('--closeset-ratio', type=float, default=0.2)
 
-    parser.add_argument('--alpha', type=float, default=0.5)
+    parser.add_argument('--alpha', type=float, default=1.0)
     parser.add_argument('--save-weights', type=bool, default=False)
     parser.add_argument('--resume', type=str, default=None)
     parser.add_argument('--restart-epoch', type=int, default=0)
