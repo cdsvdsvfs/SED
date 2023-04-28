@@ -262,7 +262,7 @@ def parse_args():
     parser.add_argument('--clip-thresh', type=bool, default=True)
     parser.add_argument('--use-mixup', type=bool, default=False)
     parser.add_argument('--momentum_scs', type=float, default=0.999)
-    parser.add_argument('--momentum_scr', type=float, default=0.99)
+    parser.add_argument('--momentum_scr', type=float, default=0.999)
 
 
     args = parser.parse_args()
