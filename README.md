@@ -29,17 +29,17 @@ You can download the Clothing1M from [here](https://github.com/NUST-Machine-Inte
 
 # Training
 
-An example shell script to run SACB on CIFAR-100N :
+An example shell script to run SED on CIFAR-100N :
 
 ```python
-CUDA_VISIBLE_DEVICES=0 python main.py --warmup-epoch 20 --epoch 100 --batch-size 128 --lr 0.01 --warmup-lr 0.05  --noise-type symmetric --closeset-ratio 0.2 --lr-decay cosine:20,5e-4,100  --opt sgd --dataset cifar100nc  --momentum_scs 0.9 --momentum_scr 0.9 --alpha 1.0 --aph 0.99 
+CUDA_VISIBLE_DEVICES=0 python main.py --warmup-epoch 20 --epoch 100 --batch-size 128 --lr 0.05 --warmup-lr 0.05  --noise-type symmetric --closeset-ratio 0.2 --lr-decay cosine:20,5e-4,100  --opt sgd --dataset cifar100nc  --momentum_scs 0.999 --momentum_scr 0.95 --alpha 1.0 --aph 0.99 
 ```
-An example shell script to run SACB on CIFAR-80N :
+An example shell script to run SED on CIFAR-80N :
 
 ```python
-CUDA_VISIBLE_DEVICES=0 python main.py --warmup-epoch 20 --epoch 150 --batch-size 128 --lr 0.05 --warmup-lr 0.05  --noise-type symmetric --closeset-ratio 0.2 --lr-decay cosine:20,5e-4,140  --opt sgd --dataset cifar80no  --momentum_scs 0.999 --momentum_scr 0.85 --alpha 0.5 --aph 0.99  
+CUDA_VISIBLE_DEVICES=0 python main.py --warmup-epoch 20 --epoch 100 --batch-size 128 --lr 0.05 --warmup-lr 0.05  --noise-type symmetric --closeset-ratio 0.2 --lr-decay cosine:20,5e-4,100  --opt sgd --dataset cifar80no  --momentum_scs 0.999 --momentum_scr 0.95 --alpha 0.5 --aph 0.95  
 ```
-Here is an example shell script to run SACB on Web-aircraft :
+Here is an example shell script to run SED on Web-aircraft :
 
 ```python
 CUDA_VISIBLE_DEVICES=0 python main_webfg.py --warmup-epoch 10 --epoch 110 --batch-size 32 --lr 0.005 --warmup-lr 0.005  --lr-decay cosine:10,5e-4,110 --weight-decay 5e-4 --seed 123 --opt sgd --dataset web-bird --SSL True --gpu 0 --momentum-mask 0.999 --momentum-qaq 0.99 --pretrain True --alpha 1 --aph 0.95 --save-weights True
