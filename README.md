@@ -58,3 +58,4 @@ CUDA_VISIBLE_DEVICES=0 python main_webfg.py --warmup-epoch 10 --epoch 110 --batc
 # Effects of different compoments in test accuracy (%) onCIFAR100N (noise rate and noise type are 0.5 and symmetric,respectively)
 
 ![framework](Table3.png)
+
