@@ -44,7 +44,7 @@ def warmup(net, scs, scr, net_ema, ema, optimizer, trainloader, dev, train_loss_
         y = sample['label'].to(device)
         outputs = net(x)
         logits = outputs['logits'] if type(outputs) is dict else outputs
-        loss_ce = F.cross_entropy(logits, y, label_smoothing=0.6)
+        loss_ce = F.cross_entropy(logits, y, label_smoothing=0.3)
         penalty = conf_penalty(logits)
         loss = loss_ce + penalty
 
@@ -121,16 +121,16 @@ def robust_train(net, scs, scr, n_samples, net_ema, ema, optimizer, trainloader,
             l = max(l, 1 - l)
             idx2 = torch.randperm(len(ind_in_clean))
             loss_clean = torch.mean(
-                F.cross_entropy(logits[ind_in_clean], y[ind_in_clean], reduction="none",label_smoothing=0.6) * l + (
+                F.cross_entropy(logits[ind_in_clean], y[ind_in_clean], reduction="none",label_smoothing=0.3) * l + (
                             1 - l) * F.cross_entropy(
-                    logits[ind_in_clean][idx2], y[ind_in_clean][idx2], reduction="none",label_smoothing=0.6))
+                    logits[ind_in_clean][idx2], y[ind_in_clean][idx2], reduction="none",label_smoothing=0.3))
         else:
-            loss_clean = F.cross_entropy(logits[ind_in_clean],y[ind_in_clean],label_smoothing=0.6)
+            loss_clean = F.cross_entropy(logits[ind_in_clean],y[ind_in_clean],label_smoothing=0.3)
 
 
         loss = loss_clean
 
-        loss_SSL = F.cross_entropy(logits_s, pesudo, reduction="none",label_smoothing=0.6) * weight[indices]
+        loss_SSL = F.cross_entropy(logits_s, pesudo, reduction="none",label_smoothing=0.3) * weight[indices]
         loss += loss_SSL.mean() * config.alpha
 
 
