@@ -6,7 +6,7 @@ Specifically, we first design a novel sample selection strategy to empower self-
 A mean-teacher model is then employed to correct labels of noisy samples.
 Subsequently, we propose a self-adaptive and class-balanced sample re-weighting mechanism to assign different weights to detected noisy samples.
 Finally, we additionally employ consistency regularization on selected clean samples to improve model generalization performance.
-Extensive experimental results on synthetic and real-world datasets demonstrate the effectiveness and superiority of our proposed method..
+Extensive experimental results on synthetic and real-world datasets demonstrate the effectiveness and superiority of our proposed method.
 
 # Pipeline
 
