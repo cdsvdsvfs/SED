@@ -1,4 +1,4 @@
-# SED:Foster Adaptivity and Balance in Learning with Noisy Labels
+# SED: Foster Adaptivity and Balance in Learning with Noisy Labels
 **Abstract:** Label noise is ubiquitous in real-world scenarios, posing a practical challenge to supervised models due to its effect in hurting the generalization performance of deep neural networks.
 Existing methods primarily employ the sample selection paradigm and usually rely on dataset-dependent prior knowledge (e.g., a pre-defined threshold) to cope with label noise, inevitably degrading the adaptivity. Moreover, existing methods tend to neglect the class balance in selecting samples, leading to biased model performance.
 To this end, we propose a simple yet effective approach named SED to deal with label noise in a Self-adaptivE and class-balanceD manner. 
@@ -39,7 +39,7 @@ An example shell script to run SED on CIFAR-80N :
 ```python
 CUDA_VISIBLE_DEVICES=0 python main.py --warmup-epoch 20 --epoch 100 --batch-size 128 --lr 0.05 --warmup-lr 0.05  --noise-type symmetric --closeset-ratio 0.2 --lr-decay cosine:20,5e-4,100  --opt sgd --dataset cifar80no
 ```
-Here is an example shell script to run SED on Web-aircraft :
+Here is an example shell script to run SED on Web-Aircraft :
 
 ```python
 CUDA_VISIBLE_DEVICES=0 python main_web.py --warmup-epoch 10 --epoch 110 --batch-size 32 --lr 0.005 --warmup-lr 0.005  --lr-decay cosine:10,5e-4,110 --weight-decay 5e-4 --seed 123 --opt sgd --dataset web-bird --SSL True --gpu 0 --pretrain True
@@ -50,12 +50,12 @@ CUDA_VISIBLE_DEVICES=0 python main_web.py --warmup-epoch 10 --epoch 110 --batch-
 ![framework](Table1.png)
 
 
-# Results on Web-aircraft, Web-bird, and Web-car:
+# Results on Web-Aircraft, Web-Bird, and Web-Car:
 
 ![framework](Table2.png)
 
 
-# Effects of different compoments in test accuracy (%) onCIFAR100N (noise rate and noise type are 0.5 and symmetric,respectively)
+# Effects of different components in test accuracy (%) on CIFAR100N (noise rate and noise type are 0.5 and symmetric, respectively)
 
 ![framework](Table3.png)
 
